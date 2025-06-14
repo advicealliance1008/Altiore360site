@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights | Altiore Business Solutions</title>
+    <meta name="description" content="Explore our latest insights, articles, and thought leadership on business strategy, management, and industry trends.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Insights Page Specific Styles */
+        .insights-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+        }
+
+        .insights-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .insights-hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .insights-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+        }
+
+        .insights-intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .insights-intro p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .insights-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            color: var(--text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .insight-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .insight-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .insight-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .insight-card:hover .insight-image img {
+            transform: scale(1.05);
+        }
+
+        .insight-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .insight-content {
+            padding: 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .insight-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+
+        .insight-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .insight-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .insight-meta i {
+            color: var(--accent);
+        }
+
+        .insight-excerpt {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .insight-featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+
+        .insight-featured .insight-image {
+            height: 100%;
+        }
+
+        .insight-featured .insight-content {
+            padding: 3rem;
+        }
+
+        .insight-featured .insight-category {
+            font-size: 0.9rem;
+            padding: 0.4rem 1.2rem;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 4rem;
+        }
+
+        .page-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .page-link:hover, .page-link.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .page-link.prev, .page-link.next {
+            width: auto;
+            padding: 0 1.2rem;
+        }
+
+        .newsletter-section {
+            background: #f9f9f9;
+            padding: 5rem 0;
+            margin-top: 5rem;
+        }
+
+        .newsletter-container {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .newsletter-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .newsletter-container p {
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+        }
+
+        .newsletter-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 2rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: var(--accent);
+        }
+
+        @media (max-width: 1200px) {
+            .insight-featured {
+                grid-template-columns: 1fr;
+            }
+            
+            .insight-featured .insight-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .insights-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .insights-hero p {
+                font-size: 1.1rem;
+            }
+
+            .insights-intro h2 {
+                font-size: 2rem;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .newsletter-form input[type="email"],
+            .newsletter-form button {
+                width: 100%;
+                border-radius: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Altiore</a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="insights.html" class="active">Insights</a></li>
+                <li><a href="contact.html" class="btn btn-outline">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="insights-hero">
+        <div class="container">
+            <h1>Insights & Resources</h1>
+            <p>Stay ahead with our latest thought leadership, industry trends, and expert analysis</p>
+        </div>
+    </header>
+
+    <!-- Insights Section -->
+    <section class="section">
+        <div class="container">
+            <div class="insights-intro">
+                <h2>Knowledge Hub</h2>
+                <p>Explore our collection of articles, whitepapers, and industry insights designed to help you navigate the complex business landscape and make informed decisions.</p>
+            </div>
+
+            <div class="insights-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="strategy">Business Strategy</button>
+                <button class="filter-btn" data-filter="leadership">Leadership</button>
+                <button class="filter-btn" data-filter="innovation">Innovation</button>
+                <button class="filter-btn" data-filter="market-trends">Market Trends</button>
+                <button class="filter-btn" data-filter="case-studies">Case Studies</button>
+            </div>
+
+            <div class="insights-grid">
+                <!-- Featured Insight -->
+                <article class="insight-card insight-featured" data-category="strategy">
+                    <div class="insight-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Business Strategy">
+                        <span class="insight-category">Business Strategy</span>
+                    </div>
+                    <div class="insight-content">
+                        <h3>The Future of Work: Adapting Your Business Strategy for 2025</h3>
+                        <div class="insight-meta">
+                            <span><i class="far fa-calendar-alt"></i> June 10, 2024</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                            <span><i class="far fa-user"></i> Sarah Johnson</span>
+                        </div>
+                        <p class="insight-excerpt">Explore how emerging technologies and shifting workforce dynamics are reshaping business strategies and what leaders need to do to stay competitive in the evolving landscape of work.</p>
+                        <a href="insight-single.html" class="btn btn-primary">Read Article</a>
+                    </div>
+                </article>
+
+                <!-- Insight 1 -->
+                <article class="insight-card" data-category="leadership">
+                    <div class="insight-image">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Leadership">
+                        <span class="insight-category">Leadership</span>
+                    </div>
+                    <div class="insight-content">
+                        <h3>5 Leadership Principles for Navigating Uncertain Times</h3>
+                        <div class="insight-meta">
+                            <span><i class="far fa-calendar-alt"></i> May 28, 2024</span>
+                            <span><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                        <p class="insight-excerpt">Discover the essential leadership qualities that help organizations thrive during periods of uncertainty and change.</p>
+                        <a href="insight-single.html" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Insight 2 -->
+                <article class="insight-card" data-category="innovation">
+                    <div class="insight-image">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Innovation">
+                        <span class="insight-category">Innovation</span>
+                    </div>
+                    <div class="insight-content">
+                        <h3>Driving Digital Transformation: Lessons from Industry Leaders</h3>
+                        <div class="insight-meta">
+                            <span><i class="far fa-calendar-alt"></i> May 15, 2024</span>
+                            <span><i class="far fa-clock"></i> 7 min read</span>
+                        </div>
+                        <p class="insight-excerpt">Learn how leading companies are successfully navigating digital transformation and the key strategies they're using to stay ahead.</p>
+                        <a href="insight-single.html" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Insight 3 -->
+                <article class="insight-card" data-category="market-trends">
+                    <div class="insight-image">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Market Trends">
+                        <span class="insight-category">Market Trends</span>
+                    </div>
+                    <div class="insight-content">
+                        <h3>Emerging Markets: Opportunities and Challenges in 2024</h3>
+                        <div class="insight-meta">
+                            <span><i class="far fa-calendar-alt"></i> April 30, 2024</span>
+                            <span><i class="far fa-clock"></i> 9 min read</span>
+                        </div>
+                        <p class="insight-excerpt">An in-depth analysis of the most promising emerging markets and strategies for successful market entry and expansion.</p>
+                        <a href="insight-single.html" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Insight 4 -->
+                <article class="insight-card" data-category="case-studies">
+                    <div class="insight-image">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Case Study">
+                        <span class="insight-category">Case Study</span>
+                    </div>
+                    <div class="insight-content">
+                        <h3>How Company X Achieved 300% Growth in 18 Months</h3>
+                        <div class="insight-meta">
+                            <span><i class="far fa-calendar-alt"></i> April 18, 2024</span>
+                            <span><i class="far fa-clock"></i> 10 min read</span>
+                        </div>
+                        <p class="insight-excerpt">A detailed case study examining the strategic decisions and execution that led to remarkable growth for a mid-sized enterprise.</p>
+                        <a href="insight-single.html" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <!-- Insight 5 -->
+                <article class="insight-card" data-category="strategy">
+                    <div class="insight-image">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Business Strategy">
+                        <span class="insight-category">Business Strategy</span>
+                    </div>
+                    <div class="insight-content">
+                        <h3>Sustainable Business Practices That Drive Profitability</h3>
+                        <div class="insight-meta">
+                            <span><i class="far fa-calendar-alt"></i> April 5, 2024</span>
+                            <span><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <p class="insight-excerpt">How forward-thinking companies are integrating sustainability into their core business strategies while improving their bottom line.</p>
+                        <a href="insight-single.html" class="btn btn-text">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+
+            <div class="pagination">
+                <a href="#" class="page-link prev">Previous</a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link next">Next</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-container">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for the latest insights, articles, and updates delivered straight to your inbox.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>Altiore</h3>
+                    <p>Delivering innovative business solutions that drive growth and create lasting impact.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">Startup Management</a></li>
+                        <li><a href="#">Election Management</a></li>
+                        <li><a href="#">Export Management</a></li>
+                        <li><a href="#">CSR Management</a></li>
+                        <li><a href="#">Brand Management</a></li>
+                        <li><a href="#">ITES Management</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, City, Country</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 8900</li>
+                        <li><i class="fas fa-envelope"></i> info@altiore.com</li>
+                        <li><i class="fas fa-clock"></i> Mon - Fri: 9:00 - 18:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Altiore Business Solutions. All Rights Reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Altiore Business Solutions</title>
+    <meta name="description" content="Learn about Altiore Business Solutions - Our mission, values, and the team behind our success in providing comprehensive business solutions.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* About Page Specific Styles */
+        .about-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1522071820081-009c2fca8624?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 150px 0 100px;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .about-hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .about-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+        }
+
+        .about-intro h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-intro p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin: 5rem 0;
+        }
+
+        .about-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .values-section {
+            background-color: #f9f9f9;
+            padding: 6rem 0;
+            margin: 5rem 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .value-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .team-section {
+            padding: 6rem 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .member-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .member-role {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .member-bio {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #f5f5f5;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .cta-about {
+            background: linear-gradient(135deg, var(--primary) 0%, #2c3e50 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+            margin-top: 5rem;
+        }
+
+        .cta-about h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-about p {
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-image {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+
+
+            .about-hero p {
+                font-size: 1.1rem;
+            }
+
+
+            .about-intro h2 {
+                font-size: 2rem;
+            }
+
+
+            .about-content h2 {
+                font-size: 1.8rem;
+            }
+
+
+            .cta-about h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Altiore</a>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="insights.html">Insights</a></li>
+                <li><a href="contact.html" class="btn btn-outline">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="about-hero">
+        <div class="container">
+            <h1>About Altiore</h1>
+            <p>Elevating businesses through innovative and comprehensive management solutions</p>
+        </div>
+    </header>
+
+    <!-- About Intro -->
+    <section class="section">
+        <div class="container">
+            <div class="about-intro">
+                <h2>Our Story</h2>
+                <p>Founded in 2020, Altiore Business Solutions was born out of a passion for helping businesses achieve their full potential. Our journey began with a small team of industry experts who shared a common vision: to provide comprehensive, end-to-end management solutions that truly make a difference.</p>
+                <p>Today, we've grown into a trusted partner for businesses across various sectors, helping them navigate challenges, seize opportunities, and achieve sustainable growth. Our commitment to excellence, innovation, and client success remains at the heart of everything we do.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009c2fca8624?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Our Office">
+                </div>
+                <div class="about-content">
+                    <h2>Our Mission</h2>
+                    <p>At Altiore, our mission is to empower businesses of all sizes to reach new heights through strategic guidance, innovative solutions, and exceptional execution. We believe in building lasting partnerships based on trust, transparency, and tangible results.</p>
+                    <h2>Our Vision</h2>
+                    <p>We envision a business landscape where organizations can thrive through intelligent decision-making, operational excellence, and sustainable growth strategies. Our goal is to be the catalyst that transforms this vision into reality for our clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Core Values</h2>
+                <p>The principles that guide our work and define who we are</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We strive for excellence in everything we do, delivering exceptional quality and value to our clients through continuous improvement and innovation.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>We conduct our business with the highest ethical standards, maintaining transparency, honesty, and accountability in all our interactions.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We embrace creativity and forward-thinking to develop innovative solutions that address our clients' evolving needs and challenges.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>We believe in the power of teamwork and partnership, both within our organization and with our clients, to achieve shared success.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Passion</h3>
+                    <p>We are passionate about making a meaningful impact, driven by our commitment to our clients' success and our love for what we do.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Results-Driven</h3>
+                    <p>We are focused on delivering measurable, sustainable results that drive growth, efficiency, and long-term success for our clients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Leadership Team</h2>
+                <p>The brilliant minds behind Altiore's success</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Rajiv Sharma">
+                    </div>
+                    <div class="member-info">
+                        <h3>Rajiv Sharma</h3>
+                        <span class="member-role">Founder & CEO</span>
+                        <p class="member-bio">With over 15 years of experience in business strategy and management, Rajiv leads Altiore with vision and dedication.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Priya Patel">
+                    </div>
+                    <div class="member-info">
+                        <h3>Priya Patel</h3>
+                        <span class="member-role">Chief Operations Officer</span>
+                        <p class="member-bio">Priya brings 12+ years of operational excellence and process optimization to the Altiore team.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Amit Joshi">
+                    </div>
+                    <div class="member-info">
+                        <h3>Amit Joshi</h3>
+                        <span class="member-role">Director of Strategy</span>
+                        <p class="member-bio">Amit specializes in developing innovative business strategies that drive growth and competitive advantage.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Neha Gupta">
+                    </div>
+                    <div class="member-info">
+                        <h3>Neha Gupta</h3>
+                        <span class="member-role">Head of Client Success</span>
+                        <p class="member-bio">Neha ensures our clients receive exceptional service and achieve their business objectives.</p>
+                        <div class="social-links">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-about">
+        <div class="container">
+            <h2>Ready to Elevate Your Business?</h2>
+            <p>Discover how Altiore's comprehensive solutions can transform your organization and drive sustainable growth.</p>
+            <a href="contact.html" class="btn btn-primary btn-lg">Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>Altiore</h3>
+                    <p>Elevating ambition through complete, seamless, and sophisticated management solutions.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@altiore.com</li>
+                        <li><i class="fas fa-phone"></i> +91 12345 67890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Avenue, Mumbai, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Altiore Business Solutions. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
